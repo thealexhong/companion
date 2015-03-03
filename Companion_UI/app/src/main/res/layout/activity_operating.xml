@@ -13,7 +13,9 @@
         android:layout_height="240dp"
         android:background="#ffd1ccd1"
         android:layout_marginTop="60dp"
-        android:alpha="0.5"></FrameLayout>
+        android:alpha="0.5">
+
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -31,10 +33,10 @@
     android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:text="Alarm"
-    android:id="@+id/Alarm"
+    android:id="@+id/btn_alarm"
     android:background="#ffff452d"
     android:layout_marginTop="32dp"
-    android:layout_below="@+id/down"
+    android:layout_below="@+id/btn_bwd"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
     android:onClick="alarm" />
@@ -45,7 +47,7 @@
         android:text="Autonomous"
         android:id="@+id/Auto"
         android:background="#ff5ddc4e"
-        android:layout_alignTop="@+id/Alarm"
+        android:layout_alignTop="@+id/btn_alarm"
         android:layout_alignRight="@+id/button3"
         android:layout_alignEnd="@+id/button3"
         android:onClick="autonomous" />
@@ -57,8 +59,8 @@
         android:src="@drawable/up"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/Alarm"
-        android:layout_alignEnd="@+id/Alarm" />
+        android:layout_alignRight="@+id/btn_alarm"
+        android:layout_alignEnd="@+id/btn_alarm" />
 
     <ImageButton
         android:layout_width="70dp"
@@ -74,8 +76,8 @@
         android:layout_height="70dp"
         android:id="@+id/btn_bwd"
         android:layout_below="@+id/btn_left"
-        android:layout_alignRight="@+id/Alarm"
-        android:layout_alignEnd="@+id/Alarm"
+        android:layout_alignRight="@+id/btn_alarm"
+        android:layout_alignEnd="@+id/btn_alarm"
         android:src="@drawable/down" />
 
     <ImageButton
@@ -121,19 +123,20 @@
         android:layout_height="wrap_content"
         android:text="Rotate Left"
         android:id="@+id/button4"
-        android:layout_alignTop="@+id/up"
+        android:layout_alignTop="@+id/btn_fwd"
         android:layout_toRightOf="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
+
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:text="Rotate Right"
+        android:text="Rotate Left"
         android:id="@+id/button5"
-        android:layout_alignBottom="@+id/down"
-        android:layout_alignLeft="@+id/button4"
-        android:layout_alignStart="@+id/button4" />
+        android:layout_alignTop="@+id/btn_bwd"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
 
     <ImageButton
         android:layout_width="50dp"
@@ -143,7 +146,6 @@
         android:background="#ff1d1d21"
         android:onClick="AlarmSetting"
         android:nestedScrollingEnabled="false"
-        android:layout_above="@+id/up"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
