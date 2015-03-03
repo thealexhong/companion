@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ece1778.companion_ui" >
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Operating"
+            android:label="@string/title_activity_operating" >
+        </activity>
+        <activity
+            android:name=".AlarmSetting"
+            android:label="@string/title_activity_alarm_setting" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Alarm"
+            android:label="@string/title_activity_alarm" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".GPS"
+            android:label="@string/title_activity_gps" >
+        </activity>
+        <activity
+            android:name=".Connection"
+            android:label="@string/title_activity_connection" >
+        </activity>
+        <activity
+            android:name=".AlarmAction"
+            android:label="@string/title_activity_alarm_action" >
+        </activity>
+        <activity
+            android:name=".Autonomous"
+            android:label="@string/title_activity_autonomous" >
+        </activity>
+    </application>
+
+</manifest>

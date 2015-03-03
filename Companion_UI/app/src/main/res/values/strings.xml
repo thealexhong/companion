@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Companion_UI</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_operating">Operating</string>
+    <string name="title_activity_alarm_setting">AlarmSetting</string>
+    <string name="HoldtoConnect">Click to Connect</string>
+    <string name="title_activity_alarm">Alarm</string>
+    <string name="title_activity_gps">GPS</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_example">Example action</string>
+    <string name="title_activity_connection">Connection</string>
+    <string name="title_activity_alarm_action">AlarmAction</string>
+    <string name="title_activity_autonomous">Autonomous</string>
+
+</resources>
