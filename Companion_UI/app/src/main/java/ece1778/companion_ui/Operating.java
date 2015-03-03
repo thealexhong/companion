@@ -29,10 +29,10 @@ public class Operating extends ActionBarActivity implements View.OnTouchListener
             mConn = true;
             Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
         }
-        Button mFwd = (Button)findViewById(R.id.btn_fwd);
-        Button mBwd = (Button)findViewById(R.id.btn_bwd);
-        Button mLeft = (Button)findViewById(R.id.btn_left);
-        Button mRight = (Button)findViewById(R.id.btn_right);
+        ImageButton mFwd = (ImageButton)findViewById(R.id.btn_fwd);
+        ImageButton mBwd = (ImageButton)findViewById(R.id.btn_bwd);
+        ImageButton mLeft = (ImageButton)findViewById(R.id.btn_left);
+        ImageButton mRight = (ImageButton)findViewById(R.id.btn_right);
         mFwd.setOnTouchListener(this);
         mBwd.setOnTouchListener(this);
         mLeft.setOnTouchListener(this);
