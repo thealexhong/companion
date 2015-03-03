@@ -155,6 +155,10 @@ public class EV3Connector implements EV3Protocol
         LeftMotor, RightMotor
     };
 
+    public void shoot() {
+
+    }
+
     public void moveForward() {
         move(MotorDir.Forward, MotorDir.Forward);
     }
