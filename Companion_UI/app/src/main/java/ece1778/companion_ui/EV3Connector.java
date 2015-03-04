@@ -122,7 +122,7 @@ public class EV3Connector implements EV3Protocol
 
     public boolean forward(byte id, byte power) {
         byte[] request = {
-                OUTPUT_POWER, LAYER_MASTER, id, (byte)(power & 0x3f),
+                OUTPUT_POWER, LAYER_MASTER, id, power,
                 OUTPUT_START, LAYER_MASTER, id
         };
         return setOutputState(request);
@@ -155,8 +155,12 @@ public class EV3Connector implements EV3Protocol
         LeftMotor, RightMotor
     };
 
-    public void shoot() {
+    public void attack() {
+        forward(A, setSpeed(100));
+    }
 
+    public void kapow() {
+        backward(A, setSpeed(100));
     }
 
     public void moveForward() {
@@ -177,6 +181,8 @@ public class EV3Connector implements EV3Protocol
 
     public void halt() {
         move(MotorDir.Neutral, MotorDir.Neutral);
+        stop(A, BRAKE);
+
     }
 
     public byte setSpeed(int speed) {

@@ -33,6 +33,11 @@ public class Operating extends ActionBarActivity implements View.OnTouchListener
         ImageButton mBwd = (ImageButton)findViewById(R.id.btn_bwd);
         ImageButton mLeft = (ImageButton)findViewById(R.id.btn_left);
         ImageButton mRight = (ImageButton)findViewById(R.id.btn_right);
+        Button mAtk = (Button)findViewById(R.id.button4);
+        Button mAtk2 = (Button)findViewById(R.id.button5);
+
+        mAtk.setOnTouchListener(this);
+        mAtk2.setOnTouchListener(this);
         mFwd.setOnTouchListener(this);
         mBwd.setOnTouchListener(this);
         mLeft.setOnTouchListener(this);
@@ -57,6 +62,12 @@ public class Operating extends ActionBarActivity implements View.OnTouchListener
                     break;
                 case R.id.btn_right:
                     right();
+                    break;
+                case R.id.button4:
+                    attack();
+                    break;
+                case R.id.button5:
+                    attack2();
                     break;
             }
         }
@@ -83,6 +94,18 @@ public class Operating extends ActionBarActivity implements View.OnTouchListener
     public void left()
     {
         ev3Connector.turnLeft();
+
+    }
+
+    public void attack()
+    {
+        ev3Connector.attack();
+
+    }
+
+    public void attack2()
+    {
+        ev3Connector.kapow();
 
     }
     public void right()
