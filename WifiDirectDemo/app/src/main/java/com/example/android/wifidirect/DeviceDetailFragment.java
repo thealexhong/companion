@@ -19,7 +19,6 @@ package com.example.android.wifidirect;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.net.wifi.WpsInfo;
@@ -113,6 +112,15 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
                     }
                 });
+        // Trigger Activity
+        mContentView.findViewById(R.id.btn_alert).setOnClickListener(
+                new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+//                        ((DeviceActionListener) getActivity()).disconnect();
+                    }
+                });
 
         return mContentView;
     }
@@ -165,6 +173,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             mContentView.findViewById(R.id.btn_start_client).setVisibility(View.VISIBLE);
             ((TextView) mContentView.findViewById(R.id.status_text)).setText(getResources()
                     .getString(R.string.client_text));
+            mContentView.findViewById(R.id.btn_alert).setVisibility(View.VISIBLE);
         }
 
         // hide the connect button
@@ -200,6 +209,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         view = (TextView) mContentView.findViewById(R.id.status_text);
         view.setText(R.string.empty);
         mContentView.findViewById(R.id.btn_start_client).setVisibility(View.GONE);
+        mContentView.findViewById(R.id.btn_alert).setVisibility(View.GONE);
         this.getView().setVisibility(View.GONE);
     }
 
