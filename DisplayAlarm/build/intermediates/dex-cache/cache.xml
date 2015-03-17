@@ -23,11 +23,32 @@
         <dex dex="C:\Users\Wayne\Desktop\ECE1778\Project\P2P\DisplayAlarm\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-9e66bb149a8d4edffe5d115dbb3838f93a977b40.jar" />
     </item>
     <item
+        jar="C:\Users\Wayne\Documents\GitHub\companion\DisplayAlarm\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\Wayne\Documents\GitHub\companion\DisplayAlarm\app\build\intermediates\pre-dexed\debug\classes-a34cdff8e6fa24ddb8cdf8938c25b0f4fb5564cc.jar" />
+    </item>
+    <item
         jar="C:\Users\Wayne\Desktop\ECE1778\Project\P2P\DisplayAlarm\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
         <dex dex="C:\Users\Wayne\Desktop\ECE1778\Project\P2P\DisplayAlarm\app\build\intermediates\pre-dexed\debug\classes-05195545a3a55e32737d13944b096594fafeea55.jar" />
+    </item>
+    <item
+        jar="C:\Users\Wayne\Documents\GitHub\companion\DisplayAlarm\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Wayne\Documents\GitHub\companion\DisplayAlarm\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-bb37659fdbb1c0971459624981ea5b075e3f743f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Wayne\Documents\GitHub\companion\DisplayAlarm\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Wayne\Documents\GitHub\companion\DisplayAlarm\app\build\intermediates\pre-dexed\debug\classes-46f0351bd09c98aac0f1d40cbef37a643607d639.jar" />
     </item>
 
 </items>
