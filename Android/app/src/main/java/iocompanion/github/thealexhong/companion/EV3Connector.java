@@ -18,12 +18,19 @@ public class EV3Connector implements EV3Protocol
     public static final String LEGO_UUID = "00001101-0000-1000-8000-00805F9B34FB";
     public static final boolean BT_ON = true;
     public static final boolean BT_OFF = false;
+    public static final byte A = ((byte) 0x01);
+    public static final byte B = ((byte) 0x02);
+    public static final byte C = ((byte) 0x04);
+    public static final byte D = ((byte) 0x08);
+
+    public enum MotorDir { Forward, Neutral, Backward }
+    public enum MotorKind { LeftMotor, RightMotor }
 
     public BluetoothAdapter bluetoothAdapter;
     public BluetoothSocket bluetoothSocket;
     public String address;
 
-    public EV3Connector(String address) //address =00:16:53:46:59:8E
+    public EV3Connector(String address)
     {
         this.address = address;
         this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -31,7 +38,7 @@ public class EV3Connector implements EV3Protocol
 
     public void setBluetooth(boolean state)
     {
-        if(state) // == BT_on
+        if(state)
         {
             if(!this.bluetoothAdapter.isEnabled())
             {
@@ -105,158 +112,6 @@ public class EV3Connector implements EV3Protocol
         }
     }
 
-    public boolean setOutputState(byte[] request) {
-        // 3 bytes for headers
-        ByteArrayBuffer buffer = new ByteArrayBuffer(request.length + 3);
-
-        buffer.append(DIRECT_COMMAND_NOREPLY); // Command Types
-
-        // Reply size should be 0.
-        byte[] replySize = {
-                0x00, 0x00
-        };
-        buffer.append(replySize, 0, replySize.length);
-
-        // Append the request
-        buffer.append(request, 0, request.length);
-
-        return sendRequest(buffer.toByteArray());
-    }
-
-    public boolean forward(byte id, byte power) {
-        byte[] request = {
-                OUTPUT_POWER, LAYER_MASTER, id, (byte)(power & 0x3f),
-                OUTPUT_START, LAYER_MASTER, id
-        };
-        return setOutputState(request);
-    }
-
-    public boolean backward(byte id, byte power) {
-        byte[] request = {
-                OUTPUT_POWER, LAYER_MASTER, id, negative(power),
-                OUTPUT_START, LAYER_MASTER, id
-        };
-        return setOutputState(request);
-    }
-
-    private byte negative(byte power) {
-        return (byte) (-power & 0x3f); // 0x3f (= 00111111) is the mask
-    }
-
-    /**
-     * Stops the motor using brakes.
-     *
-     * @return Error value. true means success. false means fail.
-     */
-    public boolean stop(byte id, byte mode) {
-        byte[] request = {
-                OUTPUT_STOP, LAYER_MASTER, id, mode
-        };
-        return setOutputState(request);
-    }
-
-    public enum MotorDir {
-        Forward, Neutral, Backward
-    };
-
-    public enum MotorKind {
-        LeftMotor, RightMotor
-    };
-
-    /***
-     * move forward
-     * public field variables leftMotorPower and rightMotorPower are set as
-     * motor's power
-     */
-    public void moveForward() {
-        move(MotorDir.Forward, MotorDir.Forward);
-    }
-
-    /***
-     * move backward
-     * public field variables leftMotorPower and rightMotorPower are set as
-     * motor's power
-     */
-    public void moveBackward() {
-        move(MotorDir.Backward, MotorDir.Backward);
-    }
-
-    /***
-     * turn left
-     * motor's powers are set to the constant power
-     */
-    public void turnLeft() {
-        move(MotorDir.Backward, MotorDir.Forward);
-    }
-
-    /***
-     * turn right
-     * motor's powers are set to the constant power
-     */
-    public void turnRight() {
-        move(MotorDir.Forward, MotorDir.Backward);
-    }
-
-    /***
-     * halt motors
-     */
-    public void halt() {
-        move(MotorDir.Neutral, MotorDir.Neutral);
-    }
-
-    public static final byte A = ((byte) 0x01);
-    /**
-     * Motor B.
-     */
-    public static final byte B = ((byte) 0x02);
-    /**
-     * Motor C.
-     */
-    public static final byte C = ((byte) 0x04);
-    /**
-     * Motor D.
-     */
-    public static final byte D = ((byte) 0x08);
-
-    public byte setSpeed(int speed) {
-        speed = (int) (speed / 100.0 * 31); // 0 ~ 31
-        return (byte) speed;
-    }
-
-    /***
-     * drive the both motors toward specified direction
-     * public field variables leftMotorPower and rightMotorPower are set as
-     * motor's power
-     *
-     * @param leftMotorDir
-     * @param rightMotorDir
-     */
-    public void move(MotorDir leftMotorDir, MotorDir rightMotorDir) {
-        switch (leftMotorDir) {
-            case Forward:
-                forward(B, setSpeed(100));
-                break;
-            case Neutral:
-                stop(B, BRAKE);
-                break;
-            case Backward:
-                backward(B, setSpeed(100));
-                break;
-        }
-
-        switch (rightMotorDir) {
-            case Forward:
-                forward(C, setSpeed(100));
-                break;
-            case Neutral:
-                stop(C, BRAKE);
-                break;
-            case Backward:
-                backward(C, setSpeed(100));
-                break;
-        }
-    }
-
     private boolean sendRequest(byte[] request) throws RuntimeException {
         boolean verify = true; // default of 0 means success
         try {
@@ -292,8 +147,6 @@ public class EV3Connector implements EV3Protocol
         Log.v(TAG, "Sent: " + request);
     }
 
-
-
     public void nxtmotors(byte l, byte r, boolean speedReg, boolean motorSync)
     {
         byte[] data = {0x0c, 0x00, (byte) 0x80, 0x04, 0x02, 0x32, 0x07, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00,
@@ -309,5 +162,93 @@ public class EV3Connector implements EV3Protocol
             data[21] |= 0x02;
         }
         write(data);
+    }
+
+    public boolean setOutputState(byte[] request) {
+        ByteArrayBuffer buffer = new ByteArrayBuffer(request.length + 3);
+        buffer.append(DIRECT_COMMAND_NOREPLY); // Command Types
+        byte[] replySize = {
+                0x00, 0x00
+        };
+        buffer.append(replySize, 0, replySize.length);
+        buffer.append(request, 0, request.length);
+        return sendRequest(buffer.toByteArray());
+    }
+
+    public boolean forward(byte id, byte power) {
+        byte[] request = {
+                OUTPUT_POWER, LAYER_MASTER, id, power,
+                OUTPUT_START, LAYER_MASTER, id
+        };
+        return setOutputState(request);
+    }
+
+    public boolean backward(byte id, byte power) {
+        byte[] request = {
+                OUTPUT_POWER, LAYER_MASTER, id, negative(power),
+                OUTPUT_START, LAYER_MASTER, id
+        };
+        return setOutputState(request);
+    }
+
+    private byte negative(byte power) { return (byte) (-power & 0x3f); }
+
+    public boolean stop(byte id, byte mode) {
+        byte[] request = {
+                OUTPUT_STOP, LAYER_MASTER, id, mode
+        };
+        return setOutputState(request);
+    }
+
+    public void fwdA() {
+        forward(A, setSpeed(100));
+    }
+    public void bwdA() {
+        backward(A, setSpeed(100));
+    }
+    public void fwdD() {
+        forward(D, setSpeed(100));
+    }
+    public void bwdD() {
+        backward(D, setSpeed(100));
+    }
+    public void moveForward() { move(MotorDir.Forward, MotorDir.Forward); }
+    public void moveBackward() { move(MotorDir.Backward, MotorDir.Backward); }
+    public void turnLeft() { move(MotorDir.Backward, MotorDir.Forward); }
+    public void turnRight() { move(MotorDir.Forward, MotorDir.Backward); }
+    public void halt() {
+        move(MotorDir.Neutral, MotorDir.Neutral);
+        stop(A,BRAKE); stop(D,BRAKE);
+    }
+
+    public byte setSpeed(int speed) {
+        speed = (int) (speed / 100.0 * 31); // 0 ~ 31
+        return (byte) speed;
+    }
+
+    public void move(MotorDir leftMotorDir, MotorDir rightMotorDir) {
+        switch (leftMotorDir) {
+            case Forward:
+                forward(B, setSpeed(100));
+                break;
+            case Neutral:
+                stop(B, BRAKE);
+                break;
+            case Backward:
+                backward(B, setSpeed(100));
+                break;
+        }
+
+        switch (rightMotorDir) {
+            case Forward:
+                forward(C, setSpeed(100));
+                break;
+            case Neutral:
+                stop(C, BRAKE);
+                break;
+            case Backward:
+                backward(C, setSpeed(100));
+                break;
+        }
     }
 }
