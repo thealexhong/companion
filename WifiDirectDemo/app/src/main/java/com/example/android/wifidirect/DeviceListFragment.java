@@ -184,6 +184,7 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
 
                     @Override
                     public void onCancel(DialogInterface dialog) {
+                        
                     }
                 });
     }

@@ -32,13 +32,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/get_file_button"
                 android:visibility="gone" />
-            <Button
-                android:id="@+id/btn_alert"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="alert"
-                android:visibility="gone"/>
-
         </LinearLayout>
         <TextView
             android:id="@+id/device_address"
