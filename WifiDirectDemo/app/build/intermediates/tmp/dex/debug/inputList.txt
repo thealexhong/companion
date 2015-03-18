@@ -1,2 +1,0 @@
-C:\Users\Wayne\Desktop\ECE1778\Project\P2P\WifiDirectDemo\app\build\intermediates\classes\debug
-C:\Users\Wayne\Desktop\ECE1778\Project\P2P\WifiDirectDemo\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-c0b2fa43dfd53571ae16f47c8d4028962be51063.jar
