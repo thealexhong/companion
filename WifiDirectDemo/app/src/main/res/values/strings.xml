@@ -5,7 +5,10 @@
     <string name="discover_peers_button">Discover</string>
     <string name="connect_peer_button">Connect</string>
     <string name="disconnect_peer_button">Disconnect</string>
-    <string name="get_file_button">Launch Gallery</string>
+    <string name="btn_face_angry">Angry</string>
+    <string name="btn_face_happy">Happy</string>
+    <string name="btn_face_surprised">Surprised</string>
+    <string name="stop__button">Stop</string>
     <string name="empty"></string>
     <string name="yes">yes</string>
     <string name="no">no</string>

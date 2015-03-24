@@ -42,7 +42,7 @@
 
     <ImageButton
         android:layout_width="100dp"
-        android:layout_height="550dp"
+        android:layout_height="350dp"
         android:id="@+id/btn_happy"
         android:visibility="visible"
         android:onClick="btn_happy"
@@ -53,7 +53,7 @@
 
     <ImageButton
         android:layout_width="100dp"
-        android:layout_height="550dp"
+        android:layout_height="350dp"
         android:id="@+id/btn_surprise"
         android:visibility="visible"
         android:onClick="btn_surprise"
@@ -63,13 +63,23 @@
 
     <ImageButton
         android:layout_width="100dp"
-        android:layout_height="550dp"
+        android:layout_height="350dp"
         android:id="@+id/btn_angry"
         android:visibility="visible"
         android:onClick="btn_angry"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"/>
+
+    <ImageButton
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:id="@+id/bluetooth"
+        android:visibility="visible"
+        android:onClick="bluetooth"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"/>
 
 </RelativeLayout>

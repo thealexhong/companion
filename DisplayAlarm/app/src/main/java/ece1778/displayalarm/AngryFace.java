@@ -1,5 +1,6 @@
 package ece1778.displayalarm;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 
 public class AngryFace extends ActionBarActivity {
     ImageView face_a,face_h,face_s;
-    ImageView btn_angry, btn_happy, btn_surprised;
+    ImageView btn_angry, btn_happy, btn_surprised, btn_stop;
+    MediaPlayer mysound, myalarm;
+    int count=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +26,14 @@ public class AngryFace extends ActionBarActivity {
         btn_angry=(ImageView) findViewById(R.id.btn_angry);
         btn_happy=(ImageView) findViewById(R.id.btn_happy);
         btn_surprised=(ImageView) findViewById(R.id.btn_surprise);
+
+
         face_a.setVisibility(View.GONE);
         face_h.setVisibility(View.GONE);
         face_s.setVisibility(View.GONE);
+
+        mysound = MediaPlayer.create(this,R.raw.warning);
+        myalarm = MediaPlayer.create(this,R.raw.siren);
 
         btn_angry.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,14 +41,27 @@ public class AngryFace extends ActionBarActivity {
                 face_a.setVisibility(View.VISIBLE);
                 face_h.setVisibility(View.GONE);
                 face_s.setVisibility(View.GONE);
-               }
+                mysound.setLooping(true);
+                myalarm.setLooping(true);
+               if (mysound.isPlaying()) {
+                    myalarm.start();
+                    mysound.pause();
+                } else {
+                   mysound.start();
+                }
+            }
         });
+
         btn_happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 face_a.setVisibility(View.GONE);
                 face_s.setVisibility(View.GONE);
                 face_h.setVisibility(View.VISIBLE);
+                if (mysound.isPlaying()||myalarm.isPlaying()) {
+                    mysound.pause();
+                    myalarm.pause();
+                }
             }
         });
         btn_surprised.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +70,14 @@ public class AngryFace extends ActionBarActivity {
                 face_a.setVisibility(View.GONE);
                 face_h.setVisibility(View.GONE);
                 face_s.setVisibility(View.VISIBLE);
+                if (mysound.isPlaying()||myalarm.isPlaying()) {
+                    mysound.pause();
+                    myalarm.pause();
+                }
             }
         });
-    }
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -75,5 +100,4 @@ public class AngryFace extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
