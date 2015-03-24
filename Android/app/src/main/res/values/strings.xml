@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Companion</string>
+    <string name="app_name">Robot Security</string>
     <string name="btn_connect">Connect</string>
-    <string name="btn_control">Control Me</string>
-    <string name="btn_panoramic">Panorama</string>
+    <string name="btn_security">Launch Companion</string>
+    <string name="title_control">Controller</string>
 
 </resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:background="@color/bg_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:minHeight="@dimen/min_item_height">
+        <LinearLayout
+            android:id="@+id/header_container"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/style_headerContainer">
+            <ImageButton
+                android:id="@+id/btn_companion"
+                android:contentDescription="@string/title_control"
+                android:scaleType="fitXY"
+                android:background="@color/bg_color"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:src="@drawable/back" />
+            <TextView
+                android:id="@+id/header"
+                android:text="@string/title_control"
+                style="@style/style_header" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/btn_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:baselineAligned="false"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:minHeight="@dimen/min_item_height"
+            android:orientation="vertical" >
+            <Button
+                android:id="@+id/btn_connect"
+                style="@style/style_btn"
+                android:background="@color/green"
+                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:text="@string/btn_connect" />
+            <Button
+                android:id="@+id/btn_security"
+                style="@style/style_btn"
+                android:background="@color/deedee"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/btn_security" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

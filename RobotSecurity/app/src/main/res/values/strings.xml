@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Robot Security</string>
+    <string name="btn_connect">Connect</string>
+    <string name="btn_security">Launch Companion</string>
+    <string name="title_control">Controller</string>
+    <string name="title_alarm">Alarm Settings</string>
+    <string name="title_autonomous">Super Hero</string>
+    <string name="view_listen">I am ready to respond.</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_attackA">Attack A</string>
+    <string name="btn_attackB">Attack B</string>
+    <string name="facealert">Face Alert</string>
+    <string name="soundalert">Sound Alert</string>
+    <string name="swordalert">Action Alert</string>
+
+    <string name="btn_back">Back</string>
+</resources>

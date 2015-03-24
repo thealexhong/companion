@@ -1,65 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f189ae"
-    tools:context=".main">
+    android:orientation="vertical"
+    android:baselineAligned="false"
+    tools:context=".MainActivity" >
 
-    <ImageView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:keepScreenOn="true"
-        android:adjustViewBounds="true"
-        android:gravity="center"
-        android:src="@drawable/deedee_neutral"  />
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/btn_fwd"
-            android:layout_width="match_parent"
-            android:background="@android:color/transparent"
-            android:layout_weight="1"
-            android:layout_height="match_parent" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/btn_left"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <Button
-                android:id="@+id/btn_right"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-        <Button
-            android:id="@+id/btn_bwd"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:background="@color/bg_color">
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-
-    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-        <LinearLayout android:id="@+id/fullscreen_content_controls" style="metaButtonBarStyle"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay" android:orientation="horizontal"
-            tools:ignore="UselessParent">
-            <Button android:id="@+id/btn_connect" style="metaButtonBarButtonStyle"
-                android:layout_weight="1" android:text="@string/btn_connect"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </FrameLayout>
-</FrameLayout>
+</LinearLayout>

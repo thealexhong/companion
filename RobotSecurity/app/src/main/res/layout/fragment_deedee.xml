@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:background="@color/deedee"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:contentDescription="@string/btn_back"
+        android:scaleType="fitXY"
+        android:background="@color/deedee"
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:src="@drawable/back" />
+            <ImageView
+                android:id="@+id/deedee"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:src="@drawable/deedee_happy" />
+</LinearLayout>

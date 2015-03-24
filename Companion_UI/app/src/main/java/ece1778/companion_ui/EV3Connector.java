@@ -122,7 +122,7 @@ public class EV3Connector implements EV3Protocol
 
     public boolean forward(byte id, byte power) {
         byte[] request = {
-                OUTPUT_POWER, LAYER_MASTER, id, power,
+                OUTPUT_SPEED, LAYER_MASTER, id, power,
                 OUTPUT_START, LAYER_MASTER, id
         };
         return setOutputState(request);
@@ -130,7 +130,7 @@ public class EV3Connector implements EV3Protocol
 
     public boolean backward(byte id, byte power) {
         byte[] request = {
-                OUTPUT_POWER, LAYER_MASTER, id, negative(power),
+                OUTPUT_SPEED, LAYER_MASTER, id, negative(power),
                 OUTPUT_START, LAYER_MASTER, id
         };
         return setOutputState(request);

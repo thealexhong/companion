@@ -1,15 +1,17 @@
-package iocompanion.github.thealexhong.companion;
+package iocompanion.github.thealexhong.companion.ev3comm;
 
-public interface EV3Protocol {
-
+/**
+ * Lego Mindstorm EV3 Communication Protocol
+ */
+public interface EV3Protocol
+{
     // Command Types
     public static byte DIRECT_COMMAND_REPLY = (byte) 0x00;
     public static byte DIRECT_COMMAND_NOREPLY = (byte) 0x80;
-
     public static byte DIRECT_COMMAND_SUCCESS = (byte) 0x02;
     public static byte DIRECT_COMMAND_FAIL = (byte) 0x04;
 
-    // Direct Commands - INUPT
+    // Direct Commands INPUT
     public static byte INPUT_SAMPLE = (byte) 0x97;
     public static byte INPUT_DEVICE_LIST = (byte) 0x98;
     public static byte INPUT_DEVICE = (byte) 0x99;
@@ -20,7 +22,7 @@ public interface EV3Protocol {
     public static byte INPUT_READEXT = (byte) 0x9E;
     public static byte INPUT_WRITE = (byte) 0x9F;
 
-    // Direct Commands - OUTPUT
+    // Direct Commands OUTPUT
     public static byte OUTPUT_GET_TYPE = (byte) 0xA0;
     public static byte OUTPUT_SET_TYPE = (byte) 0xA1;
     public static byte OUTPUT_RESET  = (byte) 0xA2;
@@ -43,7 +45,7 @@ public interface EV3Protocol {
     public static byte OUTPUT_GET_COUNT = (byte) 0xB3;
     public static byte OUTPUT_PRG_ST = (byte) 0xB4;
 
-    // Sub Commands for INPUT_DEVICE
+    // Sub commands for INPUT_DEVICE
     public static byte GET_FORMAT = (byte) 0x02;
     public static byte CAL_MINMAX = (byte) 0x03;
     public static byte CAL_DEFAULT = (byte) 0x04;
@@ -93,17 +95,17 @@ public interface EV3Protocol {
 
     // Port Mode:
     public static byte MODE_DEFAULT = (byte) 0x00;
-    /** Sound */
+    /* Sound */
     public static byte SOUND_DB = (byte) 0x00;
     public static byte SOUND_DBA = (byte) 0x01;
-    /** Touch */
+    /* Touch */
     public static byte TOUCH_TOUCH = (byte) 0x00;
     public static byte TOUCH_BUMPS = (byte) 0x01;
-    /** Color */
+    /* Color */
     public static byte COL_REFLECT = (byte) 0x00;
     public static byte COL_AMBIENT = (byte) 0x01;
     public static byte COL_COLOR = (byte) 0x02;
-    /** Ultrasonic */
+    /* Ultrasonic */
     public static byte US_CM = (byte) 0x00;
     public static byte US_INCH = (byte) 0x01;
     public static byte US_LISTEN = (byte) 0x02;

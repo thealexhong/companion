@@ -1,0 +1,21 @@
+<resources>
+    <color name="bg_color">#ff1d1d21</color>
+    <color name="btn_color">#096B8C</color>
+    <color name="btn_color1">#F3A14D</color>
+    <color name="btn_color2">#8BD945</color>
+    <color name="btn_color3">#A54CA5</color>
+    <color name="btn_color4">#F7717B</color>
+    <color name="btn_color5">#DEF570</color>
+    <color name="btn_color6">#FD7F68</color>
+    <color name="btn_color7">#525EA7</color>
+    <color name="btn_color8">#F4CC65</color>
+    <color name="btn_color9">#F4B165</color>
+    <color name="btn_color10">#ACA8ED</color>
+
+
+    <color name="deedee">#ED6F9E</color>
+
+    <color name="green">#34743F</color>
+    <color name="text_color">#fff8f8f8</color>
+    <color name="black_overlay">#66000000</color>
+</resources>

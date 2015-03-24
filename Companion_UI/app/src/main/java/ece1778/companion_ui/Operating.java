@@ -1,8 +1,11 @@
 package ece1778.companion_ui;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -17,7 +20,20 @@ public class Operating extends ActionBarActivity implements View.OnTouchListener
     private final String SERVICE = "00:16:53:46:59:8E";
     private boolean mConn = false;
     private EV3Connector ev3Connector;
+    private ShakeEventListener mShakeListen;
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    /*
+    private OrientationEventListener mOrientationListen;
+    public static int orientation = OrientationEventListener.ORIENTATION_UNKNOWN;
 
+    public static void setOrientation(int _orientation)
+    {
+        orientation = _orientation;
+    }
+
+    public static int getOrientation() {return orientation;}
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +43,11 @@ public class Operating extends ActionBarActivity implements View.OnTouchListener
         if(ev3Connector.connect())
         {
             mConn = true;
-            Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
+            showNotification("Connected!");
+        }
+        else
+        {
+            showNotification("Failed Connection. Try again");
         }
         ImageButton mFwd = (ImageButton)findViewById(R.id.btn_fwd);
         ImageButton mBwd = (ImageButton)findViewById(R.id.btn_bwd);
@@ -35,13 +55,87 @@ public class Operating extends ActionBarActivity implements View.OnTouchListener
         ImageButton mRight = (ImageButton)findViewById(R.id.btn_right);
         Button mAtk = (Button)findViewById(R.id.button4);
         Button mAtk2 = (Button)findViewById(R.id.button5);
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager
+                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeListen = new ShakeEventListener();
+        mShakeListen.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
+            @Override
+            public void onShake(int count) {
+                showNotification("SHAKE");
+                forward();
+                try {
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException e)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                ev3Connector.halt();
+            }
+        });
+        /*
+        mOrientationListen = new OrientationEventListener(this, SensorManager.SENSOR_DELAY_NORMAL) {
+            @Override
+            public void onOrientationChanged(int orientation) {
 
+                    Log.d("TEST",""+orientation);
+                if (Math.abs(orientation - Operating.orientation) > 90) {
+                    Operating.orientation = orientation;
+                    left();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+
+                }
+                else
+                {
+                    ev3Connector.halt();
+                }
+            }
+        };
+
+        if (mOrientationListen.canDetectOrientation()){
+            Toast.makeText(this, "Can DetectOrientation", Toast.LENGTH_LONG).show();
+            mOrientationListen.enable();
+        }
+        else{
+            Toast.makeText(this, "Can't DetectOrientation", Toast.LENGTH_LONG).show();
+            finish();
+        }
+        */
         mAtk.setOnTouchListener(this);
         mAtk2.setOnTouchListener(this);
         mFwd.setOnTouchListener(this);
         mBwd.setOnTouchListener(this);
         mLeft.setOnTouchListener(this);
         mRight.setOnTouchListener(this);
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        mSensorManager.registerListener(mShakeListen, mAccelerometer,    SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    public void onPause() {
+        mSensorManager.unregisterListener(mShakeListen);
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        //mOrientationListen.disable();
+    }
+
+    protected void showNotification (String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     public boolean onTouch(View view, MotionEvent event)
