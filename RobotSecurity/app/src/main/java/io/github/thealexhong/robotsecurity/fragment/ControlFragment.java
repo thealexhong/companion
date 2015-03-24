@@ -12,6 +12,7 @@ import io.github.thealexhong.robotsecurity.ev3comm.EV3Connector;
 
 public class ControlFragment extends BaseFragment
 {
+    public final String SERVICE = "00:16:53:46:59:8E";
     private boolean mConn = false;
     private EV3Connector ev3Connector;
 
@@ -25,18 +26,18 @@ public class ControlFragment extends BaseFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final String SERVICE = "00:16:53:46:59:8E";
-        ev3Connector = new EV3Connector(SERVICE);
-        ev3Connector.setBluetooth(EV3Connector.BT_ON);
-        if(ev3Connector.connect())
+
+        if (!mConn)
         {
-            mConn = true;
-            showNotification("Successful Connection!");
-        }
-        else
-        {
-            getPrevFragment();
-            showNotification("Failed Connection. Try again");
+            ev3Connector = new EV3Connector(SERVICE);
+            ev3Connector.setBluetooth(EV3Connector.BT_ON);
+            if (ev3Connector.connect()) {
+                mConn = true;
+                showNotification("Successful Connection!");
+            } else {
+                getPrevFragment();
+                showNotification("Failed Connection. Try again");
+            }
         }
 
         // TODO: Add Wifi direct connection here
@@ -92,7 +93,13 @@ public class ControlFragment extends BaseFragment
         ImageButton btn_back = (ImageButton) getActivity().findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { getPrevFragment(); }
+            public void onClick(View view)
+            {
+                mConn = false;
+                ev3Connector.disconnect();
+                getPrevFragment();
+                showNotification("Disconnected from Companion");
+            }
         });
     }
 

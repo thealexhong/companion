@@ -77,10 +77,10 @@ public class EV3Connector implements EV3Protocol
     public boolean connect()
     {
         boolean connected = false;
-        BluetoothDevice nxt = this.bluetoothAdapter.getRemoteDevice(this.address);
+        BluetoothDevice ev3 = this.bluetoothAdapter.getRemoteDevice(this.address);
         try
         {
-            this.bluetoothSocket = nxt.createRfcommSocketToServiceRecord(UUID.fromString(LEGO_UUID));
+            this.bluetoothSocket = ev3.createRfcommSocketToServiceRecord(UUID.fromString(LEGO_UUID));
             this.bluetoothSocket.connect();
             connected = true;
         }
@@ -90,6 +90,24 @@ public class EV3Connector implements EV3Protocol
             e.printStackTrace();
         }
         return connected;
+    }
+
+    public boolean disconnect()
+    {
+        boolean disconnect = false;
+        if (bluetoothSocket != null)
+        {
+            try
+            {
+                this.bluetoothSocket.close();
+                disconnect = true;
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return disconnect;
     }
 
     /**

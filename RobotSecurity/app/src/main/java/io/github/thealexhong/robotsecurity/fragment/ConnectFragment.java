@@ -33,6 +33,7 @@ public class ConnectFragment extends BaseFragment
             @Override
             public void onClick(View view)
             {
+                showNotification("Connecting to Companion...");
                 swapFragment(new ControlFragment());
             }
         });
