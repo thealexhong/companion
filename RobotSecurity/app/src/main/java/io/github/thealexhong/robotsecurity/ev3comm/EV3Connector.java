@@ -36,7 +36,7 @@ public class EV3Connector implements EV3Protocol
 
     /**
      * Constructor for connecting to EV3 brick
-     * @param address
+     * @param address EV3 Brick address
      */
     public EV3Connector(String address)
     {

@@ -9,7 +9,6 @@ import io.github.thealexhong.robotsecurity.R;
  * Base class for other fragments
  */
 public class BaseFragment extends Fragment {
-
     /**
      * Switch fragments
      * @param frag    switch current fragment with frag

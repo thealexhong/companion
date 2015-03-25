@@ -25,6 +25,16 @@
                 android:text="@string/title_control"
                 style="@style/style_header" />
         </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_stop"
+        android:contentDescription="@string/title_control"
+        android:scaleType="fitCenter"
+        android:background="@color/btn_color5"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:src="@drawable/stop"
+        android:visibility="gone"/>
         <LinearLayout
             android:id="@+id/btn_container"
             android:layout_width="match_parent"

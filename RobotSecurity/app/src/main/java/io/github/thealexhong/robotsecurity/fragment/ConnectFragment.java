@@ -19,7 +19,8 @@ public class ConnectFragment extends BaseFragment
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
         setConnectBtn();
         setLaunchCompanionBtn();
@@ -33,13 +34,13 @@ public class ConnectFragment extends BaseFragment
             @Override
             public void onClick(View view)
             {
-                showNotification("Connecting to Companion...");
                 swapFragment(new ControlFragment());
             }
         });
     }
 
-    private void setLaunchCompanionBtn() {
+    private void setLaunchCompanionBtn()
+    {
         Button btn = (Button) getActivity().findViewById(R.id.btn_security);
         btn.setOnClickListener(new View.OnClickListener()
         {

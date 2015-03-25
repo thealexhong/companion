@@ -35,6 +35,7 @@
             android:minHeight="@dimen/min_item_height"
             android:orientation="vertical" >
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/companion"
                 android:layout_height="280dp"
                 android:layout_width="280dp"

@@ -1,5 +1,7 @@
 package io.github.thealexhong.robotsecurity.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import io.github.thealexhong.robotsecurity.MainActivity;
 import io.github.thealexhong.robotsecurity.R;
 import io.github.thealexhong.robotsecurity.ev3comm.EV3Connector;
 
@@ -15,6 +18,10 @@ public class ControlFragment extends BaseFragment
     public final String SERVICE = "00:16:53:46:59:8E";
     private boolean mConn = false;
     private EV3Connector ev3Connector;
+
+    private boolean faceAlarm = true;
+    private boolean soundAlarm = true;
+    private boolean swordAlarm = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -38,6 +45,7 @@ public class ControlFragment extends BaseFragment
                 getPrevFragment();
                 showNotification("Failed Connection. Try again");
             }
+            ((MainActivity)getActivity()).setEv3Connector(ev3Connector);
         }
 
         // TODO: Add Wifi direct connection here
@@ -47,18 +55,51 @@ public class ControlFragment extends BaseFragment
         setBackBtn();
         setControlBtn();
         setHelpBtn();
+        setStopBtn();
+        loadSettings();
+    }
+
+    private void setStopBtnInvisible()
+    {
+        ImageButton btn = (ImageButton) getActivity().findViewById(R.id.btn_stop);
+        btn.setVisibility(View.GONE);
+    }
+
+    private void setStopBtnVisible()
+    {
+        ImageButton btn = (ImageButton) getActivity().findViewById(R.id.btn_stop);
+        btn.setVisibility(View.VISIBLE);
+    }
+
+    private void setStopBtn()
+    {
+        ImageButton btn = (ImageButton) getActivity().findViewById(R.id.btn_stop);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                // TODO: Stop face and stop sound
+                ev3Connector.halt();
+                setStopBtnInvisible();
+            }
+        });
     }
 
     private void setHelpBtn()
     {
         ImageButton btn = (ImageButton) getActivity().findViewById(R.id.btn_help);
-        btn.setOnClickListener(new View.OnClickListener()
-        {
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                // TODO: Trigger Alert mode based off alert settings
+                setStopBtnVisible();
+                if(swordAlarm)
+                {
+                    ev3Connector.moveForward();
+                    ev3Connector.fwdA();
+                }
             }
+                // TODO: Trigger Face + Sound Alert mode based off alert settings
         });
     }
 
@@ -88,6 +129,17 @@ public class ControlFragment extends BaseFragment
         });
     }
 
+    private void loadSettings()
+    {
+        SharedPreferences sharedPrefs = getActivity().getSharedPreferences("io.github.thealexhong.robotsecurity.fragment", Context.MODE_PRIVATE);
+        faceAlarm = sharedPrefs.getBoolean("FaceSwitch", true);
+        soundAlarm = sharedPrefs.getBoolean("SoundSwitch", true);
+        swordAlarm = sharedPrefs.getBoolean("SwordSwitch", false);
+    }
+
+    /**
+     * Disconnect from BT
+     */
     private void setBackBtn()
     {
         ImageButton btn_back = (ImageButton) getActivity().findViewById(R.id.btn_back);
