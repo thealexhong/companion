@@ -41,7 +41,11 @@ public class ServerThread extends Thread
                 String recv = string.toString();
                 Log.d(TAG, "Received: " + recv);
                 /**
-                if (recv.equals("forward"))
+                if (recv.equals("connect"))
+                {
+
+                }
+                else if (recv.equals("forward"))
                 {
 
                 }
