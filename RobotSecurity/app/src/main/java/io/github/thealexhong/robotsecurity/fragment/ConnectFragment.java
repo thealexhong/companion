@@ -8,6 +8,9 @@ import android.widget.Button;
 
 import io.github.thealexhong.robotsecurity.R;
 
+/**
+ * Connect Screen
+ */
 public class ConnectFragment extends BaseFragment
 {
     @Override

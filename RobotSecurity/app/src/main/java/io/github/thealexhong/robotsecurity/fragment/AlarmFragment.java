@@ -12,12 +12,17 @@ import android.widget.Switch;
 
 import io.github.thealexhong.robotsecurity.R;
 
+/**
+ * Alarm Settings
+ */
 public class AlarmFragment extends BaseFragment
 {
+    // Save alarm settings
     private boolean faceAlarm;
     private boolean soundAlarm;
     private boolean swordAlarm;
 
+    // Switches
     private Switch faceSwitch;
     private Switch soundSwitch;
     private Switch swordSwitch;
@@ -36,6 +41,9 @@ public class AlarmFragment extends BaseFragment
         loadSettings();
     }
 
+    /**
+     * Set up switches
+     */
     private void setView()
     {
         ImageButton btn_back = (ImageButton) getActivity().findViewById(R.id.btn_back);

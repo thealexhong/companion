@@ -12,6 +12,9 @@ import io.github.thealexhong.robotsecurity.MainActivity;
 import io.github.thealexhong.robotsecurity.R;
 import io.github.thealexhong.robotsecurity.ev3comm.EV3Connector;
 
+/**
+ * Autonomous (Super Hero) mode
+ */
 public class AutoFragment extends BaseFragment
 {
     private EV3Connector ev3Connector;

@@ -30,7 +30,7 @@ public class BaseFragment extends Fragment {
      * Shows message box inside the fragment
      * @param msg
      */
-    protected void showNotification (String msg) {
+    public void showNotification (String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 }

@@ -37,6 +37,7 @@ public class ControlFragment extends BaseFragment
         if (!mConn)
         {
             ev3Connector = new EV3Connector(SERVICE);
+            /*
             ev3Connector.setBluetooth(EV3Connector.BT_ON);
             if (ev3Connector.connect()) {
                 mConn = true;
@@ -45,7 +46,9 @@ public class ControlFragment extends BaseFragment
                 getPrevFragment();
                 showNotification("Failed Connection. Try again");
             }
+            */
             ((MainActivity)getActivity()).setEv3Connector(ev3Connector);
+            ((MainActivity)getActivity()).sendMessage("Test message");
         }
 
         // TODO: Add Wifi direct connection here

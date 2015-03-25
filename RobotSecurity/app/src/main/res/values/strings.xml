@@ -13,9 +13,5 @@
     <string name="facealert">Face Alert</string>
     <string name="soundalert">Sound Alert</string>
     <string name="swordalert">Action Alert</string>
-
-    <string name="me">Me</string>
-    <string name="peers">Companion</string>
     <string name="btn_back">Back</string>
-    <string name="emptymessage">Empty</string>
 </resources>
