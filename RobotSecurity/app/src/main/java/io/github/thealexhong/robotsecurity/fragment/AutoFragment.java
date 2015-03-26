@@ -3,11 +3,19 @@ package io.github.thealexhong.robotsecurity.fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import be.tarsos.dsp.AudioDispatcher;
+import be.tarsos.dsp.AudioEvent;
+import be.tarsos.dsp.io.android.AudioDispatcherFactory;
+import be.tarsos.dsp.pitch.PitchDetectionHandler;
+import be.tarsos.dsp.pitch.PitchDetectionResult;
+import be.tarsos.dsp.pitch.PitchProcessor;
+import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm;
 import io.github.thealexhong.robotsecurity.MainActivity;
 import io.github.thealexhong.robotsecurity.R;
 import io.github.thealexhong.robotsecurity.ev3comm.EV3Connector;
@@ -18,10 +26,13 @@ import io.github.thealexhong.robotsecurity.wifidirect.DeeDeeProtocol;
  */
 public class AutoFragment extends BaseFragment
 {
+    public static final String TAG = "AutoFragment";
     private EV3Connector ev3Connector;
     private boolean faceAlarm = true;
     private boolean soundAlarm = true;
     private boolean swordAlarm = false;
+    private Thread listenThread;
+    private AudioDispatcher dispatcher;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -35,8 +46,6 @@ public class AutoFragment extends BaseFragment
         super.onActivityCreated(savedInstanceState);
         setStopBtnBig();
         setView();
-
-        // TODO: Listen for voice
         loadSettings();
         ev3Connector = ((MainActivity)getActivity()).getEv3Connector();
     }
@@ -77,10 +86,54 @@ public class AutoFragment extends BaseFragment
 
     private void setView()
     {
+        // Set Microphone listener
+        dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050,1024,0);
+        dispatcher.addAudioProcessor(new PitchProcessor(PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, new PitchDetectionHandler() {
+            @Override
+            public void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
+                final float pitchInHz = pitchDetectionResult.getPitch();
+
+                //BaseFragment frag = (BaseFragment) getActivity().getFragmentManager().findFragmentById(R.id.fragment_container);
+                if(getActivity() != null) {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.v(TAG, "" + pitchInHz);
+                            if (pitchInHz > 500)
+                            {
+                                setStopBtnVisible();
+                                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ATTACK);
+                                if(swordAlarm)
+                                {
+                                    ev3Connector.moveForward();
+                                    ev3Connector.fwdA();
+                                }
+                                if(soundAlarm)
+                                {
+                                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.SOUND);
+                                }
+                                if (faceAlarm)
+                                {
+                                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ALERT);
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }));
+        listenThread = new Thread(dispatcher,"Audio Dispatcher");
+        listenThread.start();
+
         ImageButton btn_back = (ImageButton) getActivity().findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { getPrevFragment(); }
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
+                ev3Connector.halt();
+                listenThread.interrupt();
+                dispatcher.stop();
+                getPrevFragment(); }
         });
 
         ImageButton btn_stop = (ImageButton) getActivity().findViewById(R.id.btn_stop);
@@ -90,6 +143,8 @@ public class AutoFragment extends BaseFragment
             {
                 ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                 ev3Connector.halt();
+                listenThread.interrupt();
+                dispatcher.stop();
                 getPrevFragment();
             }
         });
