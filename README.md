@@ -10,4 +10,4 @@ The user is required to have a LEGO EV3 Mindstorm set, and 2 smart phones runnin
 
 The project was inspired by my first start-up: [Robot Playtime](http://robotplaytime.com).
 
-![Test](https://octodex.github.com/images/yaktocat.png)
+![controller](https://github.com/thealexhong/companion/blob/master/Screenshots/controller.png)
