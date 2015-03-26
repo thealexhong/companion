@@ -1,6 +1,6 @@
 #Robot Security
 
-[Alex Hong](http://thealexhong.github.io) & [Wayne Chang](https://www.linkedin.com/pub/wayne-wei-hao-chang/24/b45/881)
+Created by: [Alex Hong](http://thealexhong.github.io) and [Wayne Chang](https://www.linkedin.com/pub/wayne-wei-hao-chang/24/b45/881)
 
 ###Your own personal robot is here to serve and protect you!
 
@@ -10,6 +10,13 @@ The user is required to have a LEGO EV3 Mindstorm set, and 2 smart phones runnin
 
 The project was inspired by my first start-up: [Robot Playtime](http://robotplaytime.com).
 
-<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/home.png" alt="home" height="300px">
-<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/controller.png" alt="controller" height="300px">
-<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/superhero.png" alt="superhero" height="300px">
+##Controller Preview
+<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/home.png" alt="home" height="500px">
+<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/controller.png" alt="controller" height="500px">
+<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/superhero.png" alt="superhero" height="500px">
+
+
+##Robot Companion Preview
+<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_like.png" alt="like" width="300px">
+<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_right.png" alt="right" width="300px">
+<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_angry.png" alt="angry" width="300px">
