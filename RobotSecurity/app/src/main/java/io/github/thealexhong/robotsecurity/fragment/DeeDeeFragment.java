@@ -1,5 +1,6 @@
 package io.github.thealexhong.robotsecurity.fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,9 @@ import io.github.thealexhong.robotsecurity.R;
 public class DeeDeeFragment extends BaseFragment
 {
     private ImageView img;
+    private MediaPlayer warningSound;
+    private MediaPlayer sirenSound;
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -39,7 +43,24 @@ public class DeeDeeFragment extends BaseFragment
             }
         });
         img = (ImageView) getActivity().findViewById(R.id.deedee);
+        warningSound = MediaPlayer.create(getActivity(), R.raw.warning);
+        sirenSound = MediaPlayer.create(getActivity(), R.raw.siren);
+        warningSound.setLooping(true);
+        sirenSound.setLooping(true);
     }
+
+    public void playSound()
+    {
+        warningSound.start();
+        sirenSound.start();
+    }
+
+    public void stopSound()
+    {
+        warningSound.pause();
+        sirenSound.pause();
+    }
+
 
     public void setFace(DeeDee face)
     {

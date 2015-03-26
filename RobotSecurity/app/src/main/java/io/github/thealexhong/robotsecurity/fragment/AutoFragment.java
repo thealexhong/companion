@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import io.github.thealexhong.robotsecurity.MainActivity;
 import io.github.thealexhong.robotsecurity.R;
 import io.github.thealexhong.robotsecurity.ev3comm.EV3Connector;
+import io.github.thealexhong.robotsecurity.wifidirect.DeeDeeProtocol;
 
 /**
  * Autonomous (Super Hero) mode
@@ -67,7 +68,7 @@ public class AutoFragment extends BaseFragment
             @Override
             public void onClick(View view)
             {
-                // TODO: Stop face and stop sound
+                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                 ev3Connector.halt();
                 setStopBtnInvisible();
             }
@@ -87,7 +88,7 @@ public class AutoFragment extends BaseFragment
             @Override
             public void onClick(View view)
             {
-                // TODO: Stop face and stop sound
+                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                 ev3Connector.halt();
                 getPrevFragment();
             }
@@ -99,12 +100,20 @@ public class AutoFragment extends BaseFragment
             public void onClick(View view)
             {
                 setStopBtnVisible();
+                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ATTACK);
                 if(swordAlarm)
                 {
                     ev3Connector.moveForward();
                     ev3Connector.fwdA();
                 }
-            // TODO: Trigger alarms based on settings
+                if(soundAlarm)
+                {
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.SOUND);
+                }
+                if (faceAlarm)
+                {
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ALERT);
+                }
             }
         });
 

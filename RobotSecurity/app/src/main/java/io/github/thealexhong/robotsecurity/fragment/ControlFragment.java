@@ -85,7 +85,6 @@ public class ControlFragment extends BaseFragment
             @Override
             public void onClick(View view)
             {
-                // TODO: stop sound
                 ev3Connector.halt();
                 ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                 setStopBtnInvisible();

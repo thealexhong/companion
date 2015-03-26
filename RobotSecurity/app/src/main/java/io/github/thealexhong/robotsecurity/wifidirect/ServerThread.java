@@ -136,6 +136,7 @@ public class ServerThread extends Thread
                             BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
                             if(frag instanceof DeeDeeFragment) {
                                 ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.NEUTRAL);
+                                ((DeeDeeFragment) frag).stopSound();
                             }
                         }
                     });
@@ -148,6 +149,7 @@ public class ServerThread extends Thread
                             BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
                             if(frag instanceof DeeDeeFragment) {
                                 ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.SLEEPY);
+                                ((DeeDeeFragment) frag).stopSound();
                             }
                         }
                     });
@@ -160,6 +162,7 @@ public class ServerThread extends Thread
                                 BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
                                 if (frag instanceof DeeDeeFragment) {
                                     ((DeeDeeFragment) frag).setFace(DeeDeeFragment.DeeDee.SURPRISE);
+                                    ((DeeDeeFragment) frag).playSound();
                                 }
                             }
                         });
