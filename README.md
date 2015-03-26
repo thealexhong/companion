@@ -11,12 +11,12 @@ The user is required to have a LEGO EV3 Mindstorm set, and 2 smart phones runnin
 The project was inspired by my first start-up: [Robot Playtime](http://robotplaytime.com).
 
 ##Controller Preview
-<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/home.png" alt="home" height="400px">
-<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/controller.png" alt="controller" height="400px">
-<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/superhero.png" alt="superhero" height="400px">
+<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/home.png" alt="home" height="350px">
+<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/controller.png" alt="controller" height="350px">
+<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/superhero.png" alt="superhero" height="350px">
 
 
 ##Robot Companion Preview
-<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_like.png" alt="like" width="200px">
-<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_right.png" alt="right" width="200px">
-<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_angry.png" alt="angry" width="200px">
+<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_like.png" alt="like" width="250px">
+<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_right.png" alt="right" width="250px">
+<img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_angry.png" alt="angry" width="250px">
