@@ -25,6 +25,7 @@ public class MainActivity extends Activity
     private Channel channel;
     private BroadcastReceiver receiver = null;
     private String host;
+    private WifiP2pInfo info;
 
     private EV3Connector ev3Connector;
 
@@ -94,5 +95,14 @@ public class MainActivity extends Activity
     public void setOwnerHost(WifiP2pInfo info)
     {
         this.host = info.groupOwnerAddress.getHostAddress();
+        this.info = info;
+    }
+
+    public boolean getGroupOwner()
+    {
+        if (info != null)
+            return info.isGroupOwner;
+        else
+            return true;
     }
 }

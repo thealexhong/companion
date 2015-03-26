@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import io.github.thealexhong.robotsecurity.R;
 
@@ -13,6 +14,7 @@ import io.github.thealexhong.robotsecurity.R;
  */
 public class DeeDeeFragment extends BaseFragment
 {
+    private ImageView img;
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -36,5 +38,57 @@ public class DeeDeeFragment extends BaseFragment
                 getPrevFragment();
             }
         });
+        img = (ImageView) getActivity().findViewById(R.id.deedee);
+    }
+
+    public void setFace(DeeDee face)
+    {
+        switch(face)
+        {
+            case LIKE:
+                img.setImageResource(R.drawable.deedee_like);
+                break;
+            case ANGRY:
+                img.setImageResource(R.drawable.deedee_angry);
+                break;
+            case LEFT:
+                img.setImageResource(R.drawable.deedee_left);
+                break;
+            case RIGHT:
+                img.setImageResource(R.drawable.deedee_right);
+                break;
+            case NEUTRAL:
+                img.setImageResource(R.drawable.deedee_neutral);
+                break;
+            case SAD:
+                img.setImageResource(R.drawable.deedee_sad);
+                break;
+            case SLEEPY:
+                img.setImageResource(R.drawable.deedee_sleepy);
+                break;
+            case SURPRISE:
+                img.setImageResource(R.drawable.deedee_surprised);
+                break;
+            case ALERT:
+                img.setImageResource(R.drawable.deedeeangryalert);
+                break;
+            default:
+                img.setImageResource(R.drawable.deedee_happy);
+                break;
+        }
+    }
+
+    public enum DeeDee
+    {
+        LIKE,
+        HAPPY,
+        SAD,
+        ANGRY,
+        LEFT,
+        RIGHT,
+        NEUTRAL,
+        SLEEPY,
+        SURPRISE,
+        ALERT
     }
 }

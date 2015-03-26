@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import io.github.thealexhong.robotsecurity.MainActivity;
 import io.github.thealexhong.robotsecurity.R;
 import io.github.thealexhong.robotsecurity.ev3comm.EV3Connector;
+import io.github.thealexhong.robotsecurity.wifidirect.DeeDeeProtocol;
 
 public class ControlFragment extends BaseFragment
 {
@@ -33,7 +34,13 @@ public class ControlFragment extends BaseFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        if(((MainActivity)getActivity()).getGroupOwner())
+        {
+            getPrevFragment();
+            showNotification("Use your other device as the controller.");
+            return;
+        }
+        ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.CONNECT);
         if (!mConn)
         {
             ev3Connector = new EV3Connector(SERVICE);
@@ -48,10 +55,7 @@ public class ControlFragment extends BaseFragment
             }
             */
             ((MainActivity)getActivity()).setEv3Connector(ev3Connector);
-            ((MainActivity)getActivity()).sendMessage("connect");
         }
-
-        // TODO: Add Wifi direct connection here
 
         setSettingBtn();
         setAutoBtn();
@@ -81,8 +85,9 @@ public class ControlFragment extends BaseFragment
             @Override
             public void onClick(View view)
             {
-                // TODO: Stop face and stop sound
+                // TODO: stop sound
                 ev3Connector.halt();
+                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                 setStopBtnInvisible();
             }
         });
@@ -96,13 +101,22 @@ public class ControlFragment extends BaseFragment
             public void onClick(View view)
             {
                 setStopBtnVisible();
+                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ATTACK);
                 if(swordAlarm)
                 {
                     ev3Connector.moveForward();
                     ev3Connector.fwdA();
                 }
+                if (faceAlarm)
+                {
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ALERT);
+                }
+                if(soundAlarm)
+                {
+                    // TODO: Trigger Sound Alert mode based off alert settings
+                }
             }
-                // TODO: Trigger Face + Sound Alert mode based off alert settings
+
         });
     }
 
@@ -153,6 +167,7 @@ public class ControlFragment extends BaseFragment
                 mConn = false;
                 ev3Connector.disconnect();
                 getPrevFragment();
+                ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.DISCONNECT);
                 showNotification("Disconnected from Companion");
             }
         });
@@ -179,6 +194,7 @@ public class ControlFragment extends BaseFragment
                 if(action == MotionEvent.ACTION_DOWN)
                 {
                     ev3Connector.moveForward();
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.FWD);
                 }
                 else
                 {
@@ -188,6 +204,7 @@ public class ControlFragment extends BaseFragment
                         if(mConn)
                         {
                             ev3Connector.halt();
+                            ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                         }
                     }
                 }
@@ -204,6 +221,7 @@ public class ControlFragment extends BaseFragment
                 if(action == MotionEvent.ACTION_DOWN)
                 {
                     ev3Connector.moveBackward();
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.BWD);
                 }
                 else
                 {
@@ -213,6 +231,7 @@ public class ControlFragment extends BaseFragment
                         if(mConn)
                         {
                             ev3Connector.halt();
+                            ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                         }
                     }
                 }
@@ -229,6 +248,7 @@ public class ControlFragment extends BaseFragment
                 if(action == MotionEvent.ACTION_DOWN)
                 {
                     ev3Connector.turnLeft();
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.LEFT);
                 }
                 else
                 {
@@ -238,6 +258,7 @@ public class ControlFragment extends BaseFragment
                         if(mConn)
                         {
                             ev3Connector.halt();
+                            ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                         }
                     }
                 }
@@ -254,6 +275,7 @@ public class ControlFragment extends BaseFragment
                 if(action == MotionEvent.ACTION_DOWN)
                 {
                     ev3Connector.turnRight();
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.RIGHT);
                 }
                 else
                 {
@@ -263,6 +285,7 @@ public class ControlFragment extends BaseFragment
                         if(mConn)
                         {
                             ev3Connector.halt();
+                            ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                         }
                     }
                 }
@@ -279,6 +302,7 @@ public class ControlFragment extends BaseFragment
                 if(action == MotionEvent.ACTION_DOWN)
                 {
                     ev3Connector.fwdA();
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ATTACK);
                 }
                 else
                 {
@@ -288,6 +312,7 @@ public class ControlFragment extends BaseFragment
                         if(mConn)
                         {
                             ev3Connector.halt();
+                            ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                         }
                     }
                 }
@@ -304,6 +329,7 @@ public class ControlFragment extends BaseFragment
                 if(action == MotionEvent.ACTION_DOWN)
                 {
                     ev3Connector.bwdA();
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ATTACK);
                 }
                 else
                 {
@@ -313,6 +339,7 @@ public class ControlFragment extends BaseFragment
                         if(mConn)
                         {
                             ev3Connector.halt();
+                            ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.NEUTRAL);
                         }
                     }
                 }

@@ -1,7 +1,6 @@
 package io.github.thealexhong.robotsecurity.wifidirect;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import io.github.thealexhong.robotsecurity.MainActivity;
+import io.github.thealexhong.robotsecurity.R;
+import io.github.thealexhong.robotsecurity.fragment.DeeDeeFragment;
 
 public class ServerThread extends Thread
 {
@@ -40,46 +41,111 @@ public class ServerThread extends Thread
                 inputStream.close();
                 String recv = string.toString();
                 Log.d(TAG, "Received: " + recv);
-                /**
-                if (recv.equals("connect"))
-                {
+                // Communication Protocol for WifiDirect ;)
 
+                if (recv.equals(DeeDeeProtocol.CONNECT))
+                {
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.LIKE);
+                        }
+                    });
                 }
-                else if (recv.equals("forward"))
+                else if (recv.equals(DeeDeeProtocol.FWD))
                 {
-
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.HAPPY);
+                        }
+                    });
                 }
-                else if (recv.equals("turnleft"))
+                else if (recv.equals(DeeDeeProtocol.LEFT))
                 {
-
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.LEFT);
+                        }
+                    });
                 }
-                else if (recv.equals("turnright"))
+                else if (recv.equals(DeeDeeProtocol.RIGHT))
                 {
-
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.RIGHT);
+                        }
+                    });
                 }
-                else if (recv.equals("backward"))
+                else if (recv.equals(DeeDeeProtocol.BWD))
                 {
-
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.SAD);
+                        }
+                    });
                 }
-                else if(recv.equals("attack"))
+                else if(recv.equals(DeeDeeProtocol.ATTACK))
                 {
-
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.ANGRY);
+                        }
+                    });
                 }
-                else if (recv.equals("deedee"))
+                else if(recv.equals(DeeDeeProtocol.ALERT))
                 {
-
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.ALERT);
+                        }
+                    });
+                }
+                else if (recv.equals(DeeDeeProtocol.NEUTRAL))
+                {
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.NEUTRAL);
+                        }
+                    });
+                }
+                else if (recv.equals(DeeDeeProtocol.DISCONNECT))
+                {
+                    activity.runOnUiThread(new Runnable()
+                    {
+                        public void run() {
+                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            frag.setFace(DeeDeeFragment.DeeDee.SLEEPY);
+                        }
+                    });
                 }
                 else
                 {
-                    if (recv.equals("sound")) {
+                    if (recv.equals(DeeDeeProtocol.SOUND))
+                    {
+                        activity.runOnUiThread(new Runnable()
+                        {
+                            public void run() {
+                                DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                                frag.setFace(DeeDeeFragment.DeeDee.SURPRISE);
+                            }
+                        });
                     }
-                }*/
-                activity.runOnUiThread(new Runnable()
-                {
-                    public void run() {
-                        Toast.makeText(activity, "Hello", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                }
             }
         }
         catch (IOException e)

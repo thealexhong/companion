@@ -9,7 +9,6 @@ import io.github.thealexhong.robotsecurity.MainActivity;
 public class ConnectionListener implements ConnectionInfoListener
 {
     private static final String TAG = "ConnectionListener";
-
     private MainActivity activity;
     public ConnectionListener(MainActivity activity)
     {

@@ -6,7 +6,8 @@
     android:gravity="center_vertical"
     android:background="@color/deedee"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
     <ImageButton
         android:id="@+id/btn_back"
         android:contentDescription="@string/btn_back"
@@ -19,5 +20,5 @@
                 android:id="@+id/deedee"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:src="@drawable/deedee_happy" />
+                android:src="@drawable/deedee_sleepy" />
 </LinearLayout>
