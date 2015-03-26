@@ -8,12 +8,14 @@ import io.github.thealexhong.robotsecurity.R;
 /**
  * Base class for other fragments
  */
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment
+{
     /**
      * Switch fragments
      * @param frag    switch current fragment with frag
      */
-    protected void swapFragment(Fragment frag) {
+    protected void swapFragment(Fragment frag)
+    {
         getActivity().getFragmentManager()
                 .beginTransaction().replace(R.id.fragment_container, frag)
                 .addToBackStack(null).commit();
@@ -30,7 +32,8 @@ public class BaseFragment extends Fragment {
      * Shows message box inside the fragment
      * @param msg
      */
-    public void showNotification (String msg) {
+    public void showNotification (String msg)
+    {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
     }
 }

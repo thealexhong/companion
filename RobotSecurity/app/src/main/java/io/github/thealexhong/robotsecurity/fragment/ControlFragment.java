@@ -16,7 +16,7 @@ import io.github.thealexhong.robotsecurity.wifidirect.DeeDeeProtocol;
 
 public class ControlFragment extends BaseFragment
 {
-    public final String SERVICE = "00:16:53:46:59:8E";
+    public final String SERVICE = "00:16:53:46:59:8E"; // TODO: Make it work with any EV3
     private boolean mConn = false;
     private EV3Connector ev3Connector;
 
@@ -44,16 +44,19 @@ public class ControlFragment extends BaseFragment
         if (!mConn)
         {
             ev3Connector = new EV3Connector(SERVICE);
-            /* TODO: Uncomment to make it work with EV3
+            // Uncomment to make it work with EV3
             ev3Connector.setBluetooth(EV3Connector.BT_ON);
-            if (ev3Connector.connect()) {
+            if (ev3Connector.connect())
+            {
                 mConn = true;
                 showNotification("Successful Connection!");
-            } else {
+            }
+            else
+            {
                 getPrevFragment();
                 showNotification("Failed Connection. Try again");
+                return;
             }
-            */
             ((MainActivity)getActivity()).setEv3Connector(ev3Connector);
         }
 
@@ -115,7 +118,6 @@ public class ControlFragment extends BaseFragment
                     ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ALERT);
                 }
             }
-
         });
     }
 

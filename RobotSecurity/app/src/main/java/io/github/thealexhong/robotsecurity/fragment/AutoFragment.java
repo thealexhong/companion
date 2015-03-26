@@ -92,8 +92,6 @@ public class AutoFragment extends BaseFragment
             @Override
             public void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
                 final float pitchInHz = pitchDetectionResult.getPitch();
-
-                //BaseFragment frag = (BaseFragment) getActivity().getFragmentManager().findFragmentById(R.id.fragment_container);
                 if(getActivity() != null) {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -171,6 +169,5 @@ public class AutoFragment extends BaseFragment
                 }
             }
         });
-
     }
 }

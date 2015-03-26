@@ -100,9 +100,6 @@ public class MainActivity extends Activity
 
     public boolean getGroupOwner()
     {
-        if (info != null)
-            return info.isGroupOwner;
-        else
-            return true;
+        return info == null || info.isGroupOwner;
     }
 }
