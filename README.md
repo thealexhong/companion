@@ -10,4 +10,6 @@ The user is required to have a LEGO EV3 Mindstorm set, and 2 smart phones runnin
 
 The project was inspired by my first start-up: [Robot Playtime](http://robotplaytime.com).
 
+<img src="https://github.com/thealexhong/companion/blob/master/Screenshots/home.png" alt="home" height="200px">
 ![controller](https://github.com/thealexhong/companion/blob/master/Screenshots/controller.png)
+![superhero](https://github.com/thealexhong/companion/blob/master/Screenshots/superhero.png)
