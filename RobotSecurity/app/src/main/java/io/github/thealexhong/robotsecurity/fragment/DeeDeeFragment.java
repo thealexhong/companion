@@ -57,8 +57,13 @@ public class DeeDeeFragment extends BaseFragment
 
     public void stopSound()
     {
-        warningSound.pause();
-        sirenSound.pause();
+        if(warningSound.isPlaying()) {
+            warningSound.pause();
+        }
+        if(sirenSound.isPlaying()) {
+            sirenSound.pause();
+        }
+
     }
 
 
