@@ -11,6 +11,7 @@ import java.net.Socket;
 
 import io.github.thealexhong.robotsecurity.MainActivity;
 import io.github.thealexhong.robotsecurity.R;
+import io.github.thealexhong.robotsecurity.fragment.BaseFragment;
 import io.github.thealexhong.robotsecurity.fragment.DeeDeeFragment;
 
 public class ServerThread extends Thread
@@ -48,8 +49,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.LIKE);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.LIKE);
+                            }
                         }
                     });
                 }
@@ -58,8 +61,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.HAPPY);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.HAPPY);
+                            }
                         }
                     });
                 }
@@ -68,8 +73,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.LEFT);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.LEFT);
+                            }
                         }
                     });
                 }
@@ -78,8 +85,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.RIGHT);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.RIGHT);
+                            }
                         }
                     });
                 }
@@ -88,8 +97,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.SAD);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.SAD);
+                            }
                         }
                     });
                 }
@@ -98,8 +109,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.ANGRY);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.ANGRY);
+                            }
                         }
                     });
                 }
@@ -108,8 +121,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.ALERT);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.ALERT);
+                            }
                         }
                     });
                 }
@@ -118,8 +133,10 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.NEUTRAL);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.NEUTRAL);
+                            }
                         }
                     });
                 }
@@ -128,20 +145,22 @@ public class ServerThread extends Thread
                     activity.runOnUiThread(new Runnable()
                     {
                         public void run() {
-                            DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                            frag.setFace(DeeDeeFragment.DeeDee.SLEEPY);
+                            BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                            if(frag instanceof DeeDeeFragment) {
+                                ((DeeDeeFragment)frag).setFace(DeeDeeFragment.DeeDee.SLEEPY);
+                            }
                         }
                     });
                 }
                 else
                 {
-                    if (recv.equals(DeeDeeProtocol.SOUND))
-                    {
-                        activity.runOnUiThread(new Runnable()
-                        {
+                    if (recv.equals(DeeDeeProtocol.SOUND)) {
+                        activity.runOnUiThread(new Runnable() {
                             public void run() {
-                                DeeDeeFragment frag = (DeeDeeFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
-                                frag.setFace(DeeDeeFragment.DeeDee.SURPRISE);
+                                BaseFragment frag = (BaseFragment) activity.getFragmentManager().findFragmentById(R.id.fragment_container);
+                                if (frag instanceof DeeDeeFragment) {
+                                    ((DeeDeeFragment) frag).setFace(DeeDeeFragment.DeeDee.SURPRISE);
+                                }
                             }
                         });
                     }

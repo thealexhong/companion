@@ -37,7 +37,7 @@ public class ControlFragment extends BaseFragment
         if(((MainActivity)getActivity()).getGroupOwner())
         {
             getPrevFragment();
-            showNotification("Use your other device as the controller.");
+            showNotification("Use your other device as the controller");
             return;
         }
         ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.CONNECT);
@@ -107,13 +107,13 @@ public class ControlFragment extends BaseFragment
                     ev3Connector.moveForward();
                     ev3Connector.fwdA();
                 }
+                if(soundAlarm)
+                {
+                    ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.SOUND);
+                }
                 if (faceAlarm)
                 {
                     ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ALERT);
-                }
-                if(soundAlarm)
-                {
-                    // TODO: Trigger Sound Alert mode based off alert settings
                 }
             }
 

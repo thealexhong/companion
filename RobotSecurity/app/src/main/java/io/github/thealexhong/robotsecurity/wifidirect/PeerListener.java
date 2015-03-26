@@ -40,6 +40,7 @@ public class PeerListener implements PeerListListener
                     WifiP2pConfig config = new WifiP2pConfig();
                     config.deviceAddress = device.deviceAddress;
                     config.wps.setup = WpsInfo.PBC;
+                    //config.groupOwnerIntent = 0; // for setting server/client
 
                     manager.connect(channel, config, new WifiP2pManager.ActionListener()
                     {
