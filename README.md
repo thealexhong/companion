@@ -22,3 +22,5 @@ The project was inspired by my first start-up: [Robot Playtime](http://robotplay
 <img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_like.png" alt="like" width="225px">
 <img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_right.png" alt="right" width="225px">
 <img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_angry.png" alt="angry" width="225px">
+
+&copy; Alex Hong & Wayne Chang 2015
