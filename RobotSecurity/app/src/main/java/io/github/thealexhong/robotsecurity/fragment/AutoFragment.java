@@ -97,7 +97,7 @@ public class AutoFragment extends BaseFragment
                         @Override
                         public void run() {
                             Log.v(TAG, "" + pitchInHz);
-                            if (pitchInHz > 500)
+                            if (pitchInHz > 800)
                             {
                                 setStopBtnVisible();
                                 ((MainActivity)getActivity()).sendMessage(DeeDeeProtocol.ATTACK);
