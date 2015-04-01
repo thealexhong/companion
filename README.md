@@ -23,7 +23,7 @@ The project was inspired by my first start-up: [Robot Playtime](http://robotplay
 <img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_right.png" alt="right" width="225px">
 <img src="https://github.com/thealexhong/companion/blob/master/RobotSecurity/app/src/main/res/drawable/deedee_angry.png" alt="angry" width="225px">
 
-##Next: Autonomous following in the works
+##Next: Autonomous Following in progress
 [![YouTube Video](http://img.youtube.com/vi/j0LHZ7SE1L4/0.jpg)](http://www.youtube.com/watch?v=j0LHZ7SE1L4)
 
 &copy; Alex Hong & Wayne Chang 2015
