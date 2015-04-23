@@ -11,7 +11,8 @@ The user is required to have a LEGO EV3 Mindstorm set, and 2 smart phones runnin
 The project was inspired by my first start-up: [Robot Playtime](http://robotplaytime.com).
 
 Here's our [Presentation](https://thealexhong.github.io/companion)!
-[![YouTube Video](http://img.youtube.com/vi/O370MXJDkwE/0.jpg)](https://www.youtube.com/watch?v=O370MXJDkwE)
+
+<center>[![YouTube Video](http://img.youtube.com/vi/O370MXJDkwE/0.jpg)](https://www.youtube.com/watch?v=O370MXJDkwE)</center>
 
 ##Controller Preview
 <img src="https://github.com/thealexhong/companion/blob/master/Screenshots/home.png" alt="home" height="350px">
